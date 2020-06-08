@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Aerodynamic Analysis Suite"> 
     <meta name="author" content="juddmehr"> 
-    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    <title>Theory - FLOWUnsteady</title>
+    <title>Getting started - FLOWUnsteady</title>
 
-    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
     <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="../css/base.css" rel="stylesheet">
-    <link href="../css/cinder.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/highlight.css">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
 
 
-    <link href="../assets/Documenter.css" rel="stylesheet">
+    <link href="../../assets/Documenter.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -59,7 +59,7 @@
 
             <!-- Main title -->
 
-            <a class="navbar-brand" href="..">FLOWUnsteady</a>
+            <a class="navbar-brand" href="../..">FLOWUnsteady</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -69,25 +69,130 @@
                 
                 
                     <li >
-                        <a href="..">Home</a>
+                        <a href="../..">Home</a>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../how-to/">How to</a>
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Howto <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../calculate-aerodynamic-forces/">Calculate aerodynamic forces</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../define-a-rotor/">Define a rotor</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../define-kinematic-maneuvers/">Define kinematic maneuvers</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../defining-systems/">Defining systems</a>
+</li>
+
+                        
+                            
+<li class="active">
+    <a href="./">Getting started</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../how-to/">How to</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../paraview-visualization/">Paraview visualization</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../select-a-solver/">Select a solver</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../set-up-monitors/">Set up monitors</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../set-up-runtime-functions/">Set up runtime functions</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li class="active">
-                        <a href="./">Theory</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ref <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../ref/FLOWUnsteady/">FLOWUnsteady</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../ref/FLOWVLM/">FLOWVLM</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../ref/VPM/">VPM</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../ref/theory/">Theory</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
                 
-                    <li >
-                        <a href="../tutorials/">Tutorials</a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tutorial <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+<li >
+    <a href="../../tutorial/geometry-basics/">Geometry basics</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../tutorial/tutorials/">Tutorials</a>
+</li>
+
+                        
+                        </ul>
                     </li>
                 
                 
@@ -100,17 +205,17 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../how-to/">
+                        <a rel="next" href="../defining-systems/">
                             <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../tutorials/">
+                        <a rel="prev" href="../how-to/">
                             Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/theory.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/howto/getting-started.md"><i class="fa fa-github"></i> Edit on GitHub</a>
                     </li>
             </ul>
         </div>
@@ -135,18 +240,18 @@
         <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
 
-    <script src="../js/jquery-1.10.2.min.js"></script>
-    <script src="../js/bootstrap-3.0.3.min.js"></script>
-    <script src="../js/highlight.pack.js"></script>
+    <script src="../../js/jquery-1.10.2.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script>
-    var base_url = '..';
+    var base_url = '../..';
     </script>
-    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
-    <script src="../js/base.js"></script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    <script src="../../js/base.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
-    <script src="../assets/mathjaxhelper.js"></script>
-    <script src="../search/main.js"></script>
+    <script src="../../assets/mathjaxhelper.js"></script>
+    <script src="../../search/main.js"></script>
 
     <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
         <div class="modal-dialog">
