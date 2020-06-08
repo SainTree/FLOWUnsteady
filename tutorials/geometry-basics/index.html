@@ -226,11 +226,74 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#geometry-basics">Geometry Basics</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<p><a id='Geometry-Basics-1'></a></p>
+<h1 id="geometry-basics">Geometry Basics</h1>
+<p>In this tutorial, we'll begin by defining the geometry for a simple wing.  Note that all the functions used are described in the Reference section of this documentation if you would like further information at any point.  Before you begin this tutorial, it is expected that you've already installed the necessary components of FLOWUnsteady, and that you are familiar with visualization in Paraview.</p>
+<p>First things first, we need to include the FLOWUnsteady components</p>
+<pre><code class="julia">import FLOWUnsteady
+vlm = FLOWUnsteady.vlm
+</code></pre>
+
+<pre><code>FLOWVLM
+</code></pre>
+
+<p>Let's begin with a single section, symmetric wing.  We'll start by defining some basic geometry.</p>
+<pre><code class="julia">span = 5.0
+aspectratio = 10.0
+taperratio = 0.5
+wingtwist = 0.0
+wingsweep = 10.0 #degrees
+wingdihedral = 7.0 #degrees
+</code></pre>
+
+<pre><code>7.0
+</code></pre>
+
+<p>Then we'll call the <code>simpleWing()</code> function to create a simple wing object.</p>
+<pre><code class="julia">mainwing = vlm.simpleWing(span,aspectratio,taperratio,wingtwist,wingsweep,wingdihedral)
+</code></pre>
+
+<pre><code>FLOWVLM.Wing(0.44081745177116244, -2.5, 0.3069614022572615, 0.5, 0.0, 40, Real[0.0, 0.0, 0.0], Real[1.0 0 0; 0 1 0; 0 0 1], Real[1.0 0 0; 0 1 0; 0 0 1], nothing, Dict{String,Any}(), Real[0.440817, 0.426124, 0.410656, 0.394416, 0.377402, 0.359614, 0.341054, 0.321719, 0.301612, 0.280731  …  0.280731, 0.301612, 0.321719, 0.341054, 0.359614, 0.377402, 0.394416, 0.410656, 0.426124, 0.440817], Real[0.940817, 0.94279, 0.944867, 0.947047, 0.949331, 0.95172, 0.954211, 0.956807, 0.959507, 0.96231  …  0.96231, 0.959507, 0.956807, 0.954211, 0.95172, 0.949331, 0.947047, 0.944867, 0.94279, 0.940817], Real[-2.5, -2.41667, -2.32895, -2.23684, -2.14035, -2.03947, -1.93421, -1.82456, -1.71053, -1.59211  …  1.59211, 1.71053, 1.82456, 1.93421, 2.03947, 2.14035, 2.23684, 2.32895, 2.41667, 2.5], Real[0.306961, 0.296729, 0.285959, 0.27465, 0.262802, 0.250416, 0.237491, 0.224028, 0.210026, 0.195486  …  0.195486, 0.210026, 0.224028, 0.237491, 0.250416, 0.262802, 0.27465, 0.285959, 0.296729, 0.306961], Real[0.306961, 0.296729, 0.285959, 0.27465, 0.262802, 0.250416, 0.237491, 0.224028, 0.210026, 0.195486  …  0.195486, 0.210026, 0.224028, 0.237491, 0.250416, 0.262802, 0.27465, 0.285959, 0.296729, 0.306961], Real[0.81472, 0.812469, 0.810102, 0.807619, 0.805021, 0.802308, 0.799479, 0.796534, 0.793474, 0.790299  …  0.790299, 0.793474, 0.796534, 0.799479, 0.802308, 0.805021, 0.807619, 0.810102, 0.812469, 0.81472], Real[-2.45833, -2.37281, -2.28289, -2.1886, -2.08991, -1.98684, -1.87939, -1.76754, -1.65132, -1.5307  …  1.5307, 1.65132, 1.76754, 1.87939, 1.98684, 2.08991, 2.1886, 2.28289, 2.37281, 2.45833], Real[0.301845, 0.291344, 0.280304, 0.268726, 0.256609, 0.243954, 0.23076, 0.217027, 0.202756, 0.187947  …  0.187947, 0.202756, 0.217027, 0.23076, 0.243954, 0.256609, 0.268726, 0.280304, 0.291344, 0.301845], Real[0.565817, 0.55529, 0.544209, 0.532574, 0.520384, 0.507641, 0.494343, 0.480491, 0.466086, 0.451126  …  0.451126, 0.466086, 0.480491, 0.494343, 0.507641, 0.520384, 0.532574, 0.544209, 0.55529, 0.565817], Real[-2.5, -2.41667, -2.32895, -2.23684, -2.14035, -2.03947, -1.93421, -1.82456, -1.71053, -1.59211  …  1.59211, 1.71053, 1.82456, 1.93421, 2.03947, 2.14035, 2.23684, 2.32895, 2.41667, 2.5], Real[0.306961, 0.296729, 0.285959, 0.27465, 0.262802, 0.250416, 0.237491, 0.224028, 0.210026, 0.195486  …  0.195486, 0.210026, 0.224028, 0.237491, 0.250416, 0.262802, 0.27465, 0.285959, 0.296729, 0.306961], nothing)
+</code></pre>
+
+<p>Congratulations! You've created your first wing object.  If you want, you can take a moment to explore the contents of your newly created <code>mainwing</code>.  You can do so using <code>fieldnames(mainwing)</code> and poking around. The Reference section will have more info on the contents of the wing object.</p>
+<p>Next, let's create a wing system.</p>
+<pre><code class="julia">system = vlm.WingSystem()
+</code></pre>
+
+<pre><code>FLOWVLM.WingSystem(Any[], String[], Real[0.0, 0.0, 0.0], Real[1.0 0 0; 0 1 0; 0 0 1], Real[1.0 0 0; 0 1 0; 0 0 1], nothing, Dict{String,Any}())
+</code></pre>
+
+<p>You now have an empty wing system, so let's add our mainwing object to it with the name "mainwing."</p>
+<pre><code class="julia">vlm.addwing(system,&quot;mainwing&quot;,mainwing)
+</code></pre>
+
+<p>Now that we have a wing system, let's save it as a .vtk file so we can view it in paraview.  In order to do so, we are required to define a freestream velocity.</p>
+<pre><code class="julia">Vinf(x,t) = [1,0,0]
+vlm.setVinf(system, Vinf)
+</code></pre>
+
+<p>We will also want to set some parameters for saving files and set up our file system to put the files where we want.</p>
+<pre><code class="julia">run_name = &quot;tutorial&quot;
+save_path = &quot;./simplewing/&quot;
+
+run(`rm -rf $save_path`)
+run(`mkdir $save_path`)
+</code></pre>
+
+<p>Finally, we can save the files.</p>
+<pre><code class="julia">vlm.save(system, run_name; path=save_path)
+</code></pre>
+
+<pre><code>&quot;tutorial_mainwing_vlm.vtk;&quot;
+</code></pre>
+
+<p>And now we can view our wing in Paraview using the command <code>run(`paraview`)</code> (assuming you've set up an alias for paraview on your computer).</p></div>
         
     </div>
 
