@@ -5,40 +5,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aerodynamic Analysis Suite"> 
-    <meta name="author" content="juddmehr"> 
+    <meta name="description" content="Aerodynamic Analysis Suite">
+    <meta name="author" content="juddmehr">
+    
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
+    
     <title>FLOWVLM - FLOWUnsteady</title>
+    
 
-    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
-    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="../../css/base.css" rel="stylesheet">
-    <link href="../../css/cinder.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/highlight.css">
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
 
-
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
+        
+    
     <link href="../../assets/Documenter.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
         <![endif]-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
-    <script>
-    WebFont.load({
-        google: {
-            families: ['Open Sans', 'PT Sans']
-        }
-    });
-    </script>
-
     
+
+     
 </head>
 
 <body>
@@ -201,21 +201,21 @@
             <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                            <i class="fa fa-search"></i> Search
+                            <i class="fas fa-search"></i> Search
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../FLOWUnsteady/">
-                            <i class="fa fa-arrow-left"></i> Previous
+                        <a rel="prev" href="../FLOWUnsteady/">
+                            <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../VPM/">
-                            Next <i class="fa fa-arrow-right"></i>
+                        <a rel="next" href="../VPM/">
+                            Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/reference/FLOWVLM.md"><i class="fa fa-github"></i> Edit on GitHub</a>
+                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/reference/FLOWVLM.md"><i class="fab fa-github"></i> Edit on GitHub</a>
                     </li>
             </ul>
         </div>
@@ -223,6 +223,7 @@
 </div>
 
     <div class="container">
+        
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
@@ -239,73 +240,202 @@
 <p><a id='FLOWVLM-1'></a></p>
 <h1 id="flowvlm">FLOWVLM</h1>
 <p>FLOWVLM is a vortex lattice method (VLM) code for solving aerodynamics, but is far more than that. FLOWVLM has a general three-dimensional geometric engine that powers much of the geometry of FLOWUnsteady and is also the foundation of the blade-element rotor solver. In this section we describe how wing geometries are defined, how multiple wings can be grouped into a wing system, and how objects can be rotated and translated in space.</p>
-<ul>
-<li><a href="./#FLOWVLM-1">FLOWVLM</a><ul>
-<li><a href="./#Wing-Definition-1">Wing Definition</a></li>
-</ul>
-</li>
-</ul>
 <p><a id='Wing-Definition-1'></a></p>
 <h2 id="wing-definition">Wing Definition</h2>
-<p>A <code>FLOWVLM.Wing</code> object is simply a data structure that encapsulates a collection of horseshoes vortices (or a vortex lattice). A horseshoe vortex is made out of one bound vortex located at the quarter-chord position, two trailing bound vortices going back to the trailing edge, and two semi-infinite vortices extending from the trailing edge out in the direction of the freestream, as shown below. <img alt="alt text" src="https://media.githubusercontent.com/media/byuflowlab/FLOWUnsteady/master/docs/src/assets/referencefigs/horseshoe00.png" /> A control point is associated to every horseshoe, which is located at the three-quarter chord position. At this point, the no-flow-through boundary condition is imposed, canceling the component of the freestream that is normal to the surface.</p>
+<p>A <code>FLOWVLM.Wing</code> object is simply a data structure that encapsulates a collection of horseshoes vortices (or a vortex lattice). A horseshoe vortex is made out of one bound vortex located at the quarter-chord position, two trailing bound vortices going back to the trailing edge, and two semi-infinite vortices extending from the trailing edge out in the direction of the freestream, as shown below. <img src="../assets/referencefigs/horseshoe00.png" alt="Pic here" width="400x"/> A control point is associated to every horseshoe, which is located at the three-quarter chord position. At this point, the no-flow-through boundary condition is imposed, canceling the component of the freestream that is normal to the surface.</p>
 <p>!!! note "Unsteady wake"
     In the unsteady solver of FLOWUnsteady, semi-infinite trailing vortices of the horseshoes are replaced by vortex particles that are shed off the trailing edge at every time step.</p>
 <p>There are three ways of defining a VLM wing. The first one is to manually add chord stations along the wing and discretize the sections in between into horseshoes. This approach is tedious and is rarely used. The second one is through the function <code>FLOWVLM.SimpleWing</code> that takes the parameters of the root and tip of the wing and interpolates and discretizes everything in between, which works well for most conventional wings. Finally, for complex geometries (for instance, an asymmetric wing or a wing with winglets), the user can call <code>FLOWVLM.ComplexWing</code> that works pretty much like the option of manually building the wing but in a friendlier way.</p>
 <p><a id='Manually-Building-the-Wing-1'></a></p>
 <h3 id="manually-building-the-wing">Manually Building the Wing</h3>
+<p>You can build a wing by adding each chord station manually and indicating the discretization in between.   This is done by indicating the leading edge position and chord length at each station, and the number of horseshoes in between stations.   This approach uses the <code>FLOWVLM.Wing</code> constructor to initialize the wing and the <code>FLOWVLM.addwing</code> function to add each chord.</p>
+<p><a id='FLOWVLM.Wing' href='#FLOWVLM.Wing'>#</a>
+<strong><code>FLOWVLM.Wing</code></strong> &mdash; <em>Type</em>.</p>
+<p><code>Wing(leftxl, lefty, leftz, leftchord, leftchordtwist)</code></p>
+<p>Wing constructor that automatically discretizes the surface into lattices. The wing must we built from left to right. Chords are parallel to the zx-plane, leading edge in the direction of the -xaxis and trailing in the direction of the +xaxis (hence, the span is aligned with the y-axis).</p>
+<!– The i-th control point is located at (_xm[i], _ym[i]), with left bound –> <!– vortex (_xn[i], _yn[i]) and right bound vortex (_xn[i+1], _yn[i+1]) –>
+
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>leftxl</code>         : x-position of leading edge of the left tip.</li>
+<li><code>lefty</code>          : y-position of left tip.</li>
+<li>`leftzl          : z-position of leading edge of the left tip.</li>
+<li><code>leftchord</code>      : Chord of the left tip.</li>
+<li><code>leftchordtwist</code> : Twist left tip's chord in degrees.</li>
+</ul>
+<p><strong>Example</strong></p>
+<p><code>julia julia&gt; wing = Wing(0.0, 0.0, 0.0, 10.0, 3.0);</code></p>
+<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/377fabd1dd4e868524456181cefcfa2ac5d20e02/src/FLOWVLM_wing.jl#L5-L25' class='documenter-source'>source</a><br></p>
+<p><a id='FLOWVLM.addchord' href='#FLOWVLM.addchord'>#</a>
+<strong><code>FLOWVLM.addchord</code></strong> &mdash; <em>Function</em>.</p>
+<p><code>addchord(wing, x, y, z, c, twist, n, r=1.0)</code></p>
+<p>Adds a new chord to the wing and creates n lattices in the new section. Wing must be build from left to right.</p>
+<p><strong>Arguments</strong></p>
+<ul>
+<li><code>x       : x-position leading edge of the chord.</code></li>
+<li><code>y       : y-position of the chord.</code></li>
+<li><code>z       : z-position leading edge of the chord.</code></li>
+<li><code>c       : Chord length.</code></li>
+<li><code>twist   : Twist of the chord in degrees.</code></li>
+<li><code>n::Int64: Number of lattices in the new section.</code></li>
+</ul>
+<p><strong>Optional arguments</strong></p>
+<ul>
+<li><code>r       : Ratio between lengths of first and last lattices.</code></li>
+<li><code>central : Give it true to take the length ratio between the lattice
+              midway and first and last. Give it a number between 0 and 1
+              to define the position of the reference midway.</code></li>
+<li><code>refinement : Use this option for more complex refinements. It
+              receives an array `[sec1, sec2, ...]` with sections of
+              refinements in the format `sec=[c, n, r]`, with `c` the length
+              of this section (sum of all c = 1), `n` the ratio of lattices
+              in this section, and `r` the increment ratio. If this option
+              is used, it will ignore arguments `r` and `central`.</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<pre><code>`julia&gt; wing = Wing(0.0, 0.0, 0.0, 10.0, 3.0);`
+`julia&gt; addchord(wing, 2.5, 10.0, 5.0, 5.0, 0.0, 10);`
+</code></pre>
+
+<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/377fabd1dd4e868524456181cefcfa2ac5d20e02/src/FLOWVLM_wing.jl#L88-L117' class='documenter-source'>source</a><br></p>
+<p>This requires the user to do all the calculations of what the geometry should look like based on the desired aspect ratio, taper ratio, etc.   In the following line we are doing such calculations for a $40^\circ$-swept-back wing with an aspect ratio of 5.0.</p>
+<pre><code>  # Wing parameters
+  b = 98*0.0254                   # (m) span
+  ar = 5.0                        # Aspect ratio (span over tip chord)
+  tr = 1.0                        # Taper ratio
+  lambda = 45.0                   # (deg) sweep
+  gamma = 0.0                     # (deg) dihedral
+  twist_tip = 0.0                 # (deg) tip twist
+  twist_root = 0.0                # (deg) root twist
+  n = 4                           # Horseshoes in between chord stations
+
+  # Calculations
+  cr = 1/tr                       # Chord ratio (inverse of taper ratio)
+  c_tip = b/ar                    # Chord at tip
+  c_root = cr*c_tip               # Chord at root
+  y_tip = b/2                     # y-position of tip leading edge
+  x_tip = y_tip*tan(lambda*pi/180)# x-position of tip leading edge
+  z_tip = y_tip*tan(gamma*pi/180) # z-position of tip leading edge
+</code></pre>
+
+<p>We initialize the wing by giving it the first chord station, which corresponds to the left chord.</p>
+<pre><code>import FLOWVLM
+vlm = FLOWVLM
+
+# Initialize the wing with the left tip chord
+wing = vlm.Wing(x_tip, -y_tip, z_tip, c_tip, twist_tip)
+</code></pre>
+
+<p>Then we go on to add the root and the right tip chord.</p>
+<pre><code>  # Add the root chord
+  vlm.addchord(wing, 0.0, 0.0, 0.0, c_root, twist_root, n)
+
+  # Add the right tip chord
+  vlm.addchord(wing, x_tip, y_tip, z_tip, c_tip, twist_tip, n)
+</code></pre>
+
+<p>Notice that we placed the root at the <code>(0, 0, 0)</code> position.   This doesn't always have to be this way, but remember to move the other chord stations accordingly if you want to place the nose somewhere else.</p>
+<p>!!! Tip "Build wings from left to right"     It is recommended that wings are build from left to right, or from $-y$ to $+y$.     Otherwise, the normals of the surface will point down in the negative $z$-direction and the circulation of the wing will be negative when generating upwards lift (positive $z$-direction).     This is not a problem for the solver, but could be difficult to wrap your head around a negative circulation being associated to a positive lift.</p>
 <p><a id='SimpleWing-1'></a></p>
 <h3 id="simplewing"><code>SimpleWing</code></h3>
 <p><a id='ComplexWing-1'></a></p>
 <h3 id="complexwing"><code>ComplexWing</code></h3></div>
         
+        
     </div>
 
     <footer class="col-md-12 text-center">
+        
         <hr>
         <p>
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
-    </footer>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+        </p>
 
-    <script src="../../js/jquery-1.10.2.min.js"></script>
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../../js/bootstrap-3.0.3.min.js"></script>
-    <script src="../../js/highlight.pack.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
     <script>hljs.initHighlightingOnLoad();</script>
-    <script>
-    var base_url = '../..';
-    </script>
-    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
+    
+
+    <script>var base_url = "../.."</script>
+    
     <script src="../../js/base.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <script src="../../assets/mathjaxhelper.js"></script>
     <script src="../../search/main.js"></script>
 
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        From here you can search these documents. Enter your search terms below.
-                    </p>
-                    <form role="form">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
-                        </div>
-                    </form>
-                    <div id="mkdocs-search-results"></div>
-                </div>
-                <div class="modal-footer">
-                </div>
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
             </div>
         </div>
     </div>
-
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
     </body>
 
 </html>
