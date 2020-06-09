@@ -226,11 +226,37 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#flowvlm">FLOWVLM</a></li>
+            <li class="second-level"><a href="#wing-definition">Wing Definition</a></li>
+                
+                <li class="third-level"><a href="#manually-building-the-wing">Manually Building the Wing</a></li>
+                <li class="third-level"><a href="#simplewing">SimpleWing</a></li>
+                <li class="third-level"><a href="#complexwing">ComplexWing</a></li>
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-</div>
+<p><a id='FLOWVLM-1'></a></p>
+<h1 id="flowvlm">FLOWVLM</h1>
+<p>FLOWVLM is a vortex lattice method (VLM) code for solving aerodynamics, but is far more than that. FLOWVLM has a general three-dimensional geometric engine that powers much of the geometry of FLOWUnsteady and is also the foundation of the blade-element rotor solver. In this section we describe how wing geometries are defined, how multiple wings can be grouped into a wing system, and how objects can be rotated and translated in space.</p>
+<ul>
+<li><a href="./#FLOWVLM-1">FLOWVLM</a><ul>
+<li><a href="./#Wing-Definition-1">Wing Definition</a></li>
+</ul>
+</li>
+</ul>
+<p><a id='Wing-Definition-1'></a></p>
+<h2 id="wing-definition">Wing Definition</h2>
+<p>A <code>FLOWVLM.Wing</code> object is simply a data structure that encapsulates a collection of horseshoes vortices (or a vortex lattice). A horseshoe vortex is made out of one bound vortex located at the quarter-chord position, two trailing bound vortices going back to the trailing edge, and two semi-infinite vortices extending from the trailing edge out in the direction of the freestream, as shown below. <img alt="alt text" src="https://media.githubusercontent.com/media/byuflowlab/FLOWUnsteady/master/docs/src/assets/referencefigs/horseshoe00.png" /> A control point is associated to every horseshoe, which is located at the three-quarter chord position. At this point, the no-flow-through boundary condition is imposed, canceling the component of the freestream that is normal to the surface.</p>
+<p>!!! note "Unsteady wake"
+    In the unsteady solver of FLOWUnsteady, semi-infinite trailing vortices of the horseshoes are replaced by vortex particles that are shed off the trailing edge at every time step.</p>
+<p>There are three ways of defining a VLM wing. The first one is to manually add chord stations along the wing and discretize the sections in between into horseshoes. This approach is tedious and is rarely used. The second one is through the function <code>FLOWVLM.SimpleWing</code> that takes the parameters of the root and tip of the wing and interpolates and discretizes everything in between, which works well for most conventional wings. Finally, for complex geometries (for instance, an asymmetric wing or a wing with winglets), the user can call <code>FLOWVLM.ComplexWing</code> that works pretty much like the option of manually building the wing but in a friendlier way.</p>
+<p><a id='Manually-Building-the-Wing-1'></a></p>
+<h3 id="manually-building-the-wing">Manually Building the Wing</h3>
+<p><a id='SimpleWing-1'></a></p>
+<h3 id="simplewing"><code>SimpleWing</code></h3>
+<p><a id='ComplexWing-1'></a></p>
+<h3 id="complexwing"><code>ComplexWing</code></h3></div>
         
     </div>
 
