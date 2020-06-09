@@ -5,40 +5,40 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aerodynamic Analysis Suite">
-    <meta name="author" content="juddmehr">
-    
+    <meta name="description" content="Aerodynamic Analysis Suite"> 
+    <meta name="author" content="juddmehr"> 
     <link rel="shortcut icon" href="../../img/favicon.ico">
 
-    
     <title>FLOWVLM - FLOWUnsteady</title>
-    
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
-    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
     <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="../../css/base.min.css" rel="stylesheet">
-    <link href="../../css/cinder.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href='//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/cinder.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
 
-    
-        
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github.min.css">
-        
-    
+
     <link href="../../assets/Documenter.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
 
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
 
-     
+    
 </head>
 
 <body>
@@ -201,21 +201,21 @@
             <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                            <i class="fas fa-search"></i> Search
+                            <i class="fa fa-search"></i> Search
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../FLOWUnsteady/">
-                            <i class="fas fa-arrow-left"></i> Previous
+                        <a rel="next" href="../FLOWUnsteady/">
+                            <i class="fa fa-arrow-left"></i> Previous
                         </a>
                     </li>
                     <li >
-                        <a rel="next" href="../VPM/">
-                            Next <i class="fas fa-arrow-right"></i>
+                        <a rel="prev" href="../VPM/">
+                            Next <i class="fa fa-arrow-right"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/reference/FLOWVLM.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                        <a href="http://github.com/byuflowlab/FLOWUnsteady/edit/master/docs/reference/FLOWVLM.md"><i class="fa fa-github"></i> Edit on GitHub</a>
                     </li>
             </ul>
         </div>
@@ -223,7 +223,6 @@
 </div>
 
     <div class="container">
-        
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
@@ -242,9 +241,11 @@
 <p>FLOWVLM is a vortex lattice method (VLM) code for solving aerodynamics, but is far more than that. FLOWVLM has a general three-dimensional geometric engine that powers much of the geometry of FLOWUnsteady and is also the foundation of the blade-element rotor solver. In this section we describe how wing geometries are defined, how multiple wings can be grouped into a wing system, and how objects can be rotated and translated in space.</p>
 <p><a id='Wing-Definition-1'></a></p>
 <h2 id="wing-definition">Wing Definition</h2>
-<p>A <code>FLOWVLM.Wing</code> object is simply a data structure that encapsulates a collection of horseshoes vortices (or a vortex lattice). A horseshoe vortex is made out of one bound vortex located at the quarter-chord position, two trailing bound vortices going back to the trailing edge, and two semi-infinite vortices extending from the trailing edge out in the direction of the freestream, as shown below. <img src="../assets/referencefigs/horseshoe00.png" alt="Pic here" width="400x"/> A control point is associated to every horseshoe, which is located at the three-quarter chord position. At this point, the no-flow-through boundary condition is imposed, canceling the component of the freestream that is normal to the surface.</p>
-<p>!!! note "Unsteady wake"
-    In the unsteady solver of FLOWUnsteady, semi-infinite trailing vortices of the horseshoes are replaced by vortex particles that are shed off the trailing edge at every time step.</p>
+<p>A <code>FLOWVLM.Wing</code> object is simply a data structure that encapsulates a collection of horseshoes vortices (or a vortex lattice). A horseshoe vortex is made out of one bound vortex located at the quarter-chord position, two trailing bound vortices going back to the trailing edge, and two semi-infinite vortices extending from the trailing edge out in the direction of the freestream, as shown below. &lt;!– <img src="../assets/referencefigs/horseshoe00.png" alt="Pic here" width="400x"/> –&gt; <img alt="" src="../../assets/referencefigs/horseshoe00.png" style="width:400px" /> A control point is associated to every horseshoe, which is located at the three-quarter chord position. At this point, the no-flow-through boundary condition is imposed, canceling the component of the freestream that is normal to the surface.</p>
+<div class="admonition note">
+<p class="admonition-title">Unsteady wake</p>
+<p>In the unsteady solver of FLOWUnsteady, semi-infinite trailing vortices of the horseshoes are replaced by vortex particles that are shed off the trailing edge at every time step.</p>
+</div>
 <p>There are three ways of defining a VLM wing. The first one is to manually add chord stations along the wing and discretize the sections in between into horseshoes. This approach is tedious and is rarely used. The second one is through the function <code>FLOWVLM.SimpleWing</code> that takes the parameters of the root and tip of the wing and interpolates and discretizes everything in between, which works well for most conventional wings. Finally, for complex geometries (for instance, an asymmetric wing or a wing with winglets), the user can call <code>FLOWVLM.ComplexWing</code> that works pretty much like the option of manually building the wing but in a friendlier way.</p>
 <p><a id='Manually-Building-the-Wing-1'></a></p>
 <h3 id="manually-building-the-wing">Manually Building the Wing</h3>
@@ -265,7 +266,7 @@
 </ul>
 <p><strong>Example</strong></p>
 <p><code>julia julia&gt; wing = Wing(0.0, 0.0, 0.0, 10.0, 3.0);</code></p>
-<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/377fabd1dd4e868524456181cefcfa2ac5d20e02/src/FLOWVLM_wing.jl#L5-L25' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/f962dc396c1c61d5af9ba039a80b13abf9f51624/src/FLOWVLM_wing.jl#L5-L25' class='documenter-source'>source</a><br></p>
 <p><a id='FLOWVLM.addchord' href='#FLOWVLM.addchord'>#</a>
 <strong><code>FLOWVLM.addchord</code></strong> &mdash; <em>Function</em>.</p>
 <p><code>addchord(wing, x, y, z, c, twist, n, r=1.0)</code></p>
@@ -297,7 +298,7 @@
 `julia&gt; addchord(wing, 2.5, 10.0, 5.0, 5.0, 0.0, 10);`
 </code></pre>
 
-<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/377fabd1dd4e868524456181cefcfa2ac5d20e02/src/FLOWVLM_wing.jl#L88-L117' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/byuflowlab/FLOWVLM/blob/f962dc396c1c61d5af9ba039a80b13abf9f51624/src/FLOWVLM_wing.jl#L88-L117' class='documenter-source'>source</a><br></p>
 <p>This requires the user to do all the calculations of what the geometry should look like based on the desired aspect ratio, taper ratio, etc.   In the following line we are doing such calculations for a $40^\circ$-swept-back wing with an aspect ratio of 5.0.</p>
 <pre><code>  # Wing parameters
   b = 98*0.0254                   # (m) span
@@ -342,101 +343,54 @@ wing = vlm.Wing(x_tip, -y_tip, z_tip, c_tip, twist_tip)
 <p><a id='ComplexWing-1'></a></p>
 <h3 id="complexwing"><code>ComplexWing</code></h3></div>
         
-        
     </div>
 
     <footer class="col-md-12 text-center">
-        
         <hr>
         <p>
-        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
-        </p>
-
-        
-        
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p></small>
     </footer>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="../../js/jquery-1.10.2.min.js"></script>
     <script src="../../js/bootstrap-3.0.3.min.js"></script>
-
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
-        
+    <script src="../../js/highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    
-
-    <script>var base_url = "../.."</script>
-    
+    <script>
+    var base_url = '../..';
+    </script>
+    <script data-main="../../mkdocs/js/search.js" src="../../mkdocs/js/require.js"></script>
     <script src="../../js/base.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <script src="../../assets/mathjaxhelper.js"></script>
     <script src="../../search/main.js"></script>
 
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
             </div>
         </div>
     </div>
-</div>
+
     </body>
 
 </html>
